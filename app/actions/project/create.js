@@ -6,5 +6,7 @@ module.exports = async function($) {
       }
     }
   })
-  return { status: 'OK' }
+  const { values = {} } = $.params
+
+  return await $.db('project').create(values)
 }

@@ -2,5 +2,5 @@ module.exports = async function($) {
 
   const { query = {}, fields = {} } = $.params
 
-  return await $.db('model').get(query)
+  return await $.db('project').find(query)
 }

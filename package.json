@@ -26,6 +26,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongowave": "^0.2.6",
     "sass": "^1.49.9",
     "waveorb": "^0.28.8"
   },
