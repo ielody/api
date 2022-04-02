@@ -20,16 +20,20 @@ module.exports = async function($) {
   }
 
   return /* html */`
-    <!-- <h1>Get organized with this todo app</h1>-->
-    <div></div>
-
-
-    <form onsubmit="return false">
-       <label for="title">Get organized with this todo app</label>
-        <input id="title" type="text" name="title">
+    <h1>Todo app</h1>
+    <div class="createtodo">
+      <form onsubmit="return false">
+        <label for="title">Todo app</label>
+        <div class="flex">
+          <input id="title" type="text" name="title">
+          <button onclick="handleSubmit(this)">Save</button>
+        </div>
         <em class="title-errors"></em>
-        <button onclick="handleSubmit(this)">Save</button>
       </form>
+    </div>
+    <div class="todolist">
+      No todos found
+    </div>
     <script>
       ${handleSubmit}
     </script>
