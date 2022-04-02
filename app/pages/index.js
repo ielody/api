@@ -1,5 +1,5 @@
 module.exports = async function($) {
-  $.page.title = 'Create incredible web apps'
+  $.page.title = 'Organize your life with this todo list'
 
   // Define your submit function
   async function handleSubmit(btn) {
@@ -20,12 +20,16 @@ module.exports = async function($) {
   }
 
   return /* html */`
+    <!-- <h1>Get organized with this todo app</h1>-->
+    <div></div>
+
+
     <form onsubmit="return false">
-      <label for="title">Title</label>
-      <input id="title" type="text" name="title">
-      <em class="title-errors"></em>
-      <button onclick="handleSubmit(this)">Save</button>
-    </form>
+       <label for="title">Get organized with this todo app</label>
+        <input id="title" type="text" name="title">
+        <em class="title-errors"></em>
+        <button onclick="handleSubmit(this)">Save</button>
+      </form>
     <script>
       ${handleSubmit}
     </script>
