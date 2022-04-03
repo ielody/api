@@ -34,7 +34,7 @@ module.exports = async function($) {
 
   return /* html */`
     <h1>Todo app</h1>
-    <div class="createtodo">
+    <div class="createtodo"
       <form onsubmit="return false">
         <label for="task">Task</label>
         <div class="flex">
