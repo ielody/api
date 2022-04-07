@@ -37,8 +37,20 @@ module.exports = async function($) {
       action: 'todo/delete'
     })
     console.log(deleted)
+
     if(!showErrors(deleted)) {
       cookie('flash', 'Todo was deleted from list')
+      window.location = '/'
+    }
+  }
+
+  async function updateTodos() {
+    let updated = await api({
+      action: 'todo/update'
+    })
+    console.log(updated)
+    if (!showErrors(updated)) {
+      cookie('flash', 'Todo was updated')
       window.location = '/'
     }
   }
@@ -57,14 +69,19 @@ module.exports = async function($) {
     </div>
     <div class="todolist">
     </div>
-      <div id="buttons">
+      <div id="delbtn">
         <button onclick="deleteTodos(this)">Delete</button>
+      </div>
+      <div id="updbtn">
+        <button onclick="updateTodos(this)">Update</button>
       </div>
     <script>
       ${renderTodos}
       ${handleSubmit}
       ${deleteTodos}
+      ${updateTodos}
       renderTodos()
+
     </script>
   `
 }
