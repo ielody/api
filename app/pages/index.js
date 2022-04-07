@@ -16,7 +16,7 @@ module.exports = async function($) {
     })
     console.log(result)
     if (!showErrors(result)) {
-      cookie('flash', 'Todo created')
+      cookie('flash', 'Todo was added to list')
       // Redirect to project list
       window.location = '/'
     }
