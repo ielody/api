@@ -6,11 +6,11 @@ module.exports = async function($) {
   // Define your submit function
   async function handleSubmit(btn) {
     // Using the Haka form serializer to gather the data
-    var values = serialize(btn.form)
+    let values = serialize(btn.form)
     console.log(values)
 
     // Send the data to the action
-    var result = await api({
+    let result = await api({
       action: 'todo/create',
       values
     })
@@ -23,12 +23,12 @@ module.exports = async function($) {
   }
 
   async function renderTodos() {
-    var todos = await api({
+    let todos = await api({
       action: 'todo/find'
     })
     console.log(todos)
 
-    var list = `<ul>${todos.map(todo => `<li>${todo.task}</li>`).join('')}</ul>`
+    let list = `<ul>${todos.map(todo => `<li>${todo.task}</li>`).join('')}</ul>`
     html('.todolist', list)
   }
 
@@ -45,7 +45,6 @@ module.exports = async function($) {
       </form>
     </div>
     <div class="todolist">
-
     </div>
     <script>
       ${renderTodos}
