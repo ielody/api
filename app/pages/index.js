@@ -38,7 +38,7 @@ module.exports = async function($) {
       <form onsubmit="return false">
         <label for="task">Task</label>
         <div class="flex">
-          <input id="task" type="text" name="task">
+          <input id="task" type="text" placeholder="Add a new task here..." name="task">
           <button onclick="handleSubmit(this)">Save</button>
         </div>
         <em class="task-errors"></em>
