@@ -7,7 +7,7 @@ main {
 
 form button ~ a,
 nav a {
-  margin-left: 0.5rem;
+  margin-left: 0,5 rem;
 }
 
 body > header {
@@ -52,3 +52,12 @@ a.active {
   padding: 1rem 0;
 }
 
+fieldset {
+  width: 450px;
+  margin: 50px;
+  font-size: 18px;
+}
+
+#delbtn, #updbtn {
+  display: inline-flex;
+}

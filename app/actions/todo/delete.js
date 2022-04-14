@@ -1,6 +1,15 @@
 module.exports = async function($) {
 
-  const { query = {} } = $.params
+  // await $.validate({
+  //   query: {
+  //     id: {
+  //       required: true,
+  //       is: 'id'
+  //     }
+  //   }
+  // })
 
-  return await $.db('todo').delete(query)
+  // const { query } = $.params
+
+  return await $.db('todo').delete( {/*id: query.id*/} )
 }

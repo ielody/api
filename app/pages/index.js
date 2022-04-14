@@ -6,11 +6,11 @@ module.exports = async function($) {
   // Define your submit function
   async function handleSubmit(btn) {
     // Using the Haka form serializer to gather the data
-    let values = serialize(btn.form)
+    const values = serialize(btn.form)
     console.log(values)
 
     // Send the data to the action
-    let result = await api({
+    const result = await api({
       action: 'todo/create',
       values
     })
@@ -22,30 +22,39 @@ module.exports = async function($) {
     }
   }
 
+
   async function renderTodos() {
-    let todos = await api({
+    const todos = await api({
       action: 'todo/find'
     })
     console.log(todos)
 
-    let list = `<ul>${todos.map(todo => `<li>${todo.task}</li>`).join('')}</ul>`
+    const list = `<ul>${todos.map(todo => `<li>${todo.task}</li>`).join('')}</ul>`
     html('.todolist', list)
   }
 
-  async function deleteTodos() {
-    let deleted = await api({
-      action: 'todo/delete'
-    })
-    console.log(deleted)
 
-    if(!showErrors(deleted)) {
+  async function deleteTodos(btn) {
+    const todo = await api({
+      action: 'todo/find'
+    })
+    const result = await api({
+      action: 'todo/delete',
+      query: {
+        id: todo.id
+      }
+    })
+    console.log(result)
+
+    if(!showErrors(result)) {
       cookie('flash', 'Todo was deleted from list')
       window.location = '/'
     }
   }
 
+
   async function updateTodos() {
-    let updated = await api({
+    const updated = await api({
       action: 'todo/update'
     })
     console.log(updated)
@@ -56,7 +65,8 @@ module.exports = async function($) {
   }
 
   return /* html */`
-    <h1>Todo app</h1>
+   <fieldset>
+   <h1>Todo app</h1>
     <div class="createtodo">
       <form onsubmit="return false">
         <label for="task">Task</label>
@@ -69,19 +79,20 @@ module.exports = async function($) {
     </div>
     <div class="todolist">
     </div>
-      <div id="delbtn">
-        <button onclick="deleteTodos(this)">Delete</button>
-      </div>
-      <div id="updbtn">
-        <button onclick="updateTodos(this)">Update</button>
-      </div>
+    <div id="delbtn">
+      <button onclick="deleteTodos(this)">Delete</button>
+    </div>
+    <div id="updbtn">
+      <button onclick="updateTodos(this)">Update</button>
+    </div>
+  </fieldset>
+
     <script>
       ${renderTodos}
       ${handleSubmit}
       ${deleteTodos}
       ${updateTodos}
       renderTodos()
-
     </script>
   `
 }
