@@ -22,6 +22,13 @@ module.exports = async function($) {
     }
   }
 
+  function renderTodo(todo) {
+    return `<li>
+      ${todo.task}
+      <!-- Put edit and delete buttons here -->
+      <button onclick="deleteTodo(this)" data-id="${todo.id}">Delete</button>
+    </li>`
+  }
 
   async function renderTodos() {
     const todos = await api({
@@ -29,10 +36,27 @@ module.exports = async function($) {
     })
     console.log(todos)
 
-    const list = `<ul>${todos.map(todo => `<li>${todo.task}</li>`).join('')}</ul>`
+    const list = `<ul>${todos.map(renderTodo).join('')}</ul>`
     html('.todolist', list)
   }
 
+  async function deleteTodo(btn) {
+    if (confirm('Are you sure?')) {
+      const id = btn.getAttribute('data-id')
+      const result = await api({
+        action: 'todo/delete',
+        query: {
+          id
+        }
+      })
+      console.log(result)
+
+      if(!showErrors(result)) {
+        cookie('flash', 'Todo was deleted from list')
+        window.location = '/'
+      }
+    }
+  }
 
   async function deleteTodos(btn) {
     const todo = await api({
@@ -51,7 +75,6 @@ module.exports = async function($) {
       window.location = '/'
     }
   }
-
 
   async function updateTodos() {
     const updated = await api({
@@ -88,8 +111,10 @@ module.exports = async function($) {
   </fieldset>
 
     <script>
+      ${renderTodo}
       ${renderTodos}
       ${handleSubmit}
+      ${deleteTodo}
       ${deleteTodos}
       ${updateTodos}
       renderTodos()
