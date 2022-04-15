@@ -26,8 +26,9 @@ module.exports = async function($) {
     return `<li>
       ${todo.task}
       <!-- Put edit and delete buttons here -->
-      <button onclick="deleteTodo(this)" data-id="${todo.id}">Delete</button>
+      <button onclick="deleteTodo(this)" data-id="${todo.id}">Delete</button><button onclick="updateTodos(this)" data-id="${todo.id}">Edit</button>
     </li>`
+
   }
 
   async function renderTodos() {
@@ -41,7 +42,7 @@ module.exports = async function($) {
   }
 
   async function deleteTodo(btn) {
-    if (confirm('Are you sure?')) {
+    if (confirm('Are you sure you want to delete the todo?')) {
       const id = btn.getAttribute('data-id')
       const result = await api({
         action: 'todo/delete',
@@ -101,12 +102,6 @@ module.exports = async function($) {
       </form>
     </div>
     <div class="todolist">
-    </div>
-    <div id="delbtn">
-      <button onclick="deleteTodos(this)">Delete</button>
-    </div>
-    <div id="updbtn">
-      <button onclick="updateTodos(this)">Update</button>
     </div>
   </fieldset>
 
