@@ -25,7 +25,7 @@ module.exports = async function($) {
   function renderTodo(todo) {
     return `<li>
     ${todo.task}
-    <button id="delbtn" onclick="deleteTodo(this)" data-id="${todo.id}"><i class="fa fa-trash"></i></button></button><button id="updbtn" onclick="updateTodos(this)" data-id="${todo.id}"><i class="fa fa-edit"></i></button>
+    <button id="delbtn" onclick="deleteTodo(this)" data-id="${todo.id}"><i class="fa fa-trash"></i></button></button><button id="updbtn" onclick="updateTodo(this)" data-id="${todo.id}"><i class="fa fa-edit"></i></button>
     </li>`
 
   }
@@ -58,7 +58,7 @@ module.exports = async function($) {
     }
   }
 
-  async function deleteTodos(btn) {
+  async function deleteTodos() {
     const todo = await api({
       action: 'todo/find'
     })
@@ -76,31 +76,26 @@ module.exports = async function($) {
     }
   }
 
-  async function updateTodos() {
+  async function updateTodo(btn) {
+    const id = btn.getAttribute('data-id')
     const updated = await api({
-      action: 'todo/update'
+      action: 'todo/update',
+      query: {
+        id
+      }
     })
     console.log(updated)
+
     if (!showErrors(updated)) {
       cookie('flash', 'Todo was updated')
       window.location = '/'
     }
   }
 
+
+
+
   return /* html */`
-  <style>
-#delbtn, #updbtn {
-  display: inline-flex;
-  width: 45px;
-  height: 40px;
-
-}
-
-.fa {
-  font-size: large;
-}
-  </style>
-
    <fieldset>
    <h1>Todo app</h1>
     <div class="createtodo">
@@ -123,7 +118,7 @@ module.exports = async function($) {
       ${handleSubmit}
       ${deleteTodo}
       ${deleteTodos}
-      ${updateTodos}
+      ${updateTodo}
       renderTodos()
     </script>
   `
