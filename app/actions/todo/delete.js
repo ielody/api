@@ -4,7 +4,7 @@ module.exports = async function($) {
     query: {
       id: {
         required: true,
-        is: 'id'
+        is: 'id',
       }
     }
   })
