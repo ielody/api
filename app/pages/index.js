@@ -24,9 +24,8 @@ module.exports = async function($) {
 
   function renderTodo(todo) {
     return `<li>
-      ${todo.task}
-      <!-- Put edit and delete buttons here -->
-      <button onclick="deleteTodo(this)" data-id="${todo.id}">Delete</button><button onclick="updateTodos(this)" data-id="${todo.id}">Edit</button>
+    ${todo.task}
+    <button id="delbtn" onclick="deleteTodo(this)" data-id="${todo.id}"><i class="fa fa-trash"></i></button></button><button id="updbtn" onclick="updateTodos(this)" data-id="${todo.id}"><i class="fa fa-edit"></i></button>
     </li>`
 
   }
@@ -89,6 +88,19 @@ module.exports = async function($) {
   }
 
   return /* html */`
+  <style>
+#delbtn, #updbtn {
+  display: inline-flex;
+  width: 45px;
+  height: 40px;
+
+}
+
+.fa {
+  font-size: large;
+}
+  </style>
+
    <fieldset>
    <h1>Todo app</h1>
     <div class="createtodo">
