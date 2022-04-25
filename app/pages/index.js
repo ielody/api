@@ -78,9 +78,9 @@ module.exports = async function($) {
   }
 
   async function updateTodo(btn) {
-    const todos = await api({
-      action: 'todo/find'
-    })
+    // const todos = await api({
+    //   action: 'todo/find'
+    // })
     const message = prompt('What do you want replace your todo with?')
     const id = btn.getAttribute('data-id')
     const updated = await api({
@@ -91,17 +91,39 @@ module.exports = async function($) {
       values: {
        task: message
       }
-      })
+    })
 
-    const result = `<ul>${message}${todos.map(updateTodo).join('')}</ul>`
-    html('.todolist', result)
-
+    // const result = `<ul>${message}${todos.map(updateTodo).join('')}</ul>`
+    // html('.todolist', result)
 
     if (!showErrors(updated)) {
       cookie('flash', 'Todo was updated')
       window.location = '/'
     }
   }
+
+  async function updateTodos() {
+    const todos = await api({
+      action: 'todo/find'
+    })
+    const updated = await api({
+      action: 'todo/update',
+      query: {
+        id: todo.id
+      },
+      values: {
+       task: message
+      }
+    })
+
+  const result = `<ul>${message}${todos.map(updateTodo).join('')}</ul>`
+    html('.todolist', result)
+
+  if (!showErrors(updated)) {
+    cookie('flash', 'Todo was updated')
+    window.location = '/'
+  }
+}
 
   return /* html */`
    <fieldset>
@@ -127,6 +149,7 @@ module.exports = async function($) {
       ${deleteTodo}
       ${deleteTodos}
       ${updateTodo}
+      ${updateTodos}
       renderTodos()
     </script>
   `
