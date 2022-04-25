@@ -19,12 +19,7 @@ module.exports = async function($) {
         ${process.env.NODE_ENV == 'development' ? $.script('/js/dev.js') : ''}
       </head>
       <body>
-        <header>
-          <!--<nav>
-            <a href="${$.link('index')}">Home</a>
-            <a href="${$.link('about')}">About</a>
-          </nav>-->
-        </header>
+
         <script>
           toggleVisibility()
           setActiveLink()
