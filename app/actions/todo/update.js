@@ -1,13 +1,21 @@
 module.exports = async function($) {
 
-  await $.validate({
-    query: {
-      id: {
-        required: true,
-        is: 'id',
-      }
-    }
-  })
+  // await $.validate({
+  //   query: {
+  //     id: {
+  //       required: true,
+  //       is: 'id',
+  //     },
+  //     values: {
+
+  //         message: {
+  //           required: true,
+  //           min: 2
+
+  //       }
+  //     }
+  //   }
+  // })
 
   const { query = {}, values = {} } = $.params
 
