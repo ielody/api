@@ -4,6 +4,9 @@ const { find } = require("waveorb/lib/functions")
 module.exports = async function($) {
   $.page.title = 'Organize your life with this todo list'
 
+
+
+
   // Define your submit function
   async function handleSubmit(btn) {
     // Using the Haka form serializer to gather the data
@@ -118,9 +121,14 @@ module.exports = async function($) {
     }
   }
 
+
   return /* html */`
-   <fieldset>
-   <h1>Todo app</h1>
+  <style>
+
+  </style>
+
+  <fieldset>
+   <h1>Todo list</h1>
     <div class="createtodo">
       <form onsubmit="return false">
         <label for="task">Task</label>
