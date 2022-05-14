@@ -4,9 +4,6 @@ const { find } = require("waveorb/lib/functions")
 module.exports = async function($) {
   $.page.title = 'Organize your life with this todo list'
 
-
-
-
   // Define your submit function
   async function handleSubmit(btn) {
     // Using the Haka form serializer to gather the data
@@ -27,11 +24,37 @@ module.exports = async function($) {
   }
 
   function renderTodo(todo) {
-    return `<li>
+    return `<li><div class="square"></div>
     ${todo.task}
-    <button id="delbtn" onclick="deleteTodo(this)" data-id="${todo.id}"><i class="fa fa-trash"></i></button></button><button id="updbtn" onclick="updateTodo(this)" data-id="${todo.id}"><i class="fa fa-edit"></i></button>
+    <button id="delbtn" onclick="deleteTodo(this)" data-id="${todo.id}"><i class="fa fa-trash"></i></button></button><button id="updbtn" onclick="updateTodo(this)" data-id="${todo.id}"><i class="fa fa-edit"></div></i></button>
+    <div class="checkboxdone">
+      <form onsubmit="return false">
+        <label for="checkbox">Weekly challenge:</label>
+        <br>
+
+     <input type="checkbox" id="monday" name="weekday" value="monday">
+     <label for="monday">M</label>
+
+     <input type="checkbox" id="tuesday" name="weekday" value="tuesday">
+     <label for="tuesday">T</label>
+
+     <input type="checkbox" id="wednesday" name="weekday" value="wednesday">
+     <label for="wednesday">W</label>
+
+     <input type="checkbox" id="thursday" name="weekday" value="thursday">
+     <label for="thursday">T</label>
+
+     <input type="checkbox" id="friday" name="weekday" value="friday">
+     <label for="friday">F</label>
+
+     <input type="checkbox" id="saturday" name="weekday" value="saturday">
+     <label for="saturday">S</label>
+
+     <input type="checkbox" id="sunday" name="weekday" value="sunday">
+     <label for="sunday">S</label>
     </li>`
   }
+
 
   async function renderTodos() {
     const todos = await api({
@@ -131,7 +154,7 @@ module.exports = async function($) {
    <h1>Todo list</h1>
     <div class="createtodo">
       <form onsubmit="return false">
-        <label for="task">Task</label>
+        <label for="task"></label>
         <div class="flex">
           <input id="task" type="text" maxlength="150" placeholder="Add a new task here..." name="task">
           <button onclick="handleSubmit(this)">Save</button>
@@ -141,7 +164,9 @@ module.exports = async function($) {
     </div>
     <div class="todolist">
     </div>
+    </div>
   </fieldset>
+
 
     <script>
       ${renderTodo}
@@ -152,6 +177,7 @@ module.exports = async function($) {
       ${updateTodo}
       ${updateTodos}
       renderTodos()
+
     </script>
   `
 }

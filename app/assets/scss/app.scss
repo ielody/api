@@ -56,23 +56,28 @@ fieldset {
   width: 450px;
   margin: 50px;
   font-size: 18px;
+  margin-top: 10rem;
 }
 
-#delbtn, #updbtn {
+#delbtn,
+#updbtn {
   display: inline-block;
-  width: 0px;
-  height: 50px;
   visibility: hidden;
-  padding: 10px;
+  font-size: larger;
+}
+
+#delbtn {
+  color: darkred;
+  margin-right: -2rem;
+}
+
+#updbtn {
+  color: darkblue;
 }
 
 #input {
   padding: 10px;
   border: 0px 10px;
-}
-
-.flex button  {
-  background-color: blanchedalmond;
 }
 
 .fa {
@@ -83,14 +88,18 @@ fieldset {
 
 h1 {
   margin-left: 1.2rem;
+  text-align:center;
 }
 
 fieldset {
-  margin: 15vh;
   border: 5px solid;
   border-color: rgba(0, 0, 255, .2);
   box-shadow: 7px 8px 2px 1px rgba(0, 0, 200, .1);
   background-color: lavender;
+  width: 550px;
+  font-size: 18px;
+  margin-top: 10rem;
+  margin: 50px;
 }
 
 .createtodo label {
@@ -107,28 +116,69 @@ fieldset {
   margin-right: 0.9rem;
   height: 40.5px;
   width: 69px;
+  background-color: thistle;
+  font-size: 16px;
+  letter-spacing: 0.4px;
 }
 
 body {
-background: linear-gradient(-45deg, pink, hotpink, yellow);
-background-size: 400% 400%;
-animation: gradient 15s ease infinite;
-height: 100vh;
-}
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+  background: linear-gradient(45deg, lavenderblush, pink);
+  height: 100vh;
 }
 
 .todolist {
-  margin-left: 0.7rem;
-  margin-bottom: 1rem;
+  margin-left: -0.6rem;
+  margin-bottom: 0.9rem;
+}
+
+.flex button:hover {
+  background-color: lightSkyBlue;
+  transition: 0.7s;
+}
+
+.square {
+  background-color: #fff;
+  width: 10px;
+  height: 10px;
+  position: relative;
+  transform: rotate(45deg);
+  display: inline-block;
+  margin-right: 8px;
+  background-color: darkmagenta;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  margin-bottom: 0.1rem;
+}
+
+fieldset {
+  border: 5px solid;
+  border-color: rgba(0, 0, 255, .2);
+  box-shadow: 7px 8px 2px 1px rgba(0, 0, 200, .1);
+  background-color: lavender;
+  width: 550px;
+  font-size: 18px;
+  margin-top: 10rem;
+  margin: 50px;
+}
+
+label {
+  color: black;
+}
+
+li {
+  margin-bottom: 0.8rem;
+  margin-right: 1rem;
+}
+
+.checkboxdone {
+  margin-top: -0.7rem
+}
+
+label {
+  color: black;
 }
