@@ -19,14 +19,12 @@ module.exports = async function($) {
         ${process.env.NODE_ENV == 'development' ? $.script('/js/dev.js') : ''}
       </head>
       <body>
-
         <script>
           toggleVisibility()
           setActiveLink()
         </script>
         <div id="flash"></div>
         <main>${$.page.content}</main>
-
         <script>flash()</script>
       </body>
     </html>
